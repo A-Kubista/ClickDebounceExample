@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Click Debouncer</string>
+    <string name="debounceUntilLatest">debounceUntilLatest</string>
+    <string name="debounce">Debounce</string>
+</resources>
