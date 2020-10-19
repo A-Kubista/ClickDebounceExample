@@ -1,9 +1,7 @@
 package com.example.clickdebouncer
 
 import com.nhaarman.mockitokotlin2.*
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Rule
 import org.junit.Test
 
 
@@ -11,13 +9,9 @@ import org.junit.Test
 class DebounceKtTest {
 
 
-    @get:Rule
-    val coroutineTestRule = CoroutineTestRule()
-
-
     @Test
     fun `should call only once when time between calls is shorter than debounce delay`() =
-        coroutineTestRule.testDispatcher.runBlockingTest {
+        runBlockingTest {
             // given
             val debounceTime = 500L
             val timeBetweenCalls = 200L
@@ -26,9 +20,10 @@ class DebounceKtTest {
             val testFun = mock<(Int) -> Unit> {
                 onGeneric { invoke(any()) } doReturn Unit
             }
+
             val debouncedTestFun = debounce(
                 debounceTime,
-                MainScope(),
+                this,
                 testFun
             )
 
@@ -43,7 +38,7 @@ class DebounceKtTest {
 
     @Test
     fun `should call every time with proper params when time between calls is longer than debounce delay`() =
-        coroutineTestRule.testDispatcher.runBlockingTest {
+        runBlockingTest {
             // given
             val debounceTime = 500L
             val timeBetweenCalls = 1000L
@@ -55,7 +50,7 @@ class DebounceKtTest {
 
             val debouncedTestFun = debounce(
                 debounceTime,
-                MainScope(),
+                this,
                 testFun
             )
 

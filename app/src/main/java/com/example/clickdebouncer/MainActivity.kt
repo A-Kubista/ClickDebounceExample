@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewTreeLifecycleOwner
 import com.example.clickdebouncer.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.activity = this
-        binding.coroutineScope = lifecycleScope
+        ViewTreeLifecycleOwner.set(window.decorView, this)
         textViewCounter.text = counter.toString()
     }
 

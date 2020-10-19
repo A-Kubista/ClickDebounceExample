@@ -9,10 +9,6 @@
             name="activity"
             type="com.example.clickdebouncer.MainActivity" />
 
-        <variable
-            name="coroutineScope"
-            type="kotlinx.coroutines.CoroutineScope" />
-
     </data>
 
 
@@ -31,8 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:scope="@{coroutineScope}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
